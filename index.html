@@ -26,15 +26,14 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;background:rgba(255,255,255,0.85);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:all .3s}
 nav.scrolled{border-bottom-color:var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
-.nav-left{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);flex-shrink:0}
-.nav-left img{height:28px;object-fit:contain}
+.nav-left{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);flex-shrink:0;font-size:14px;font-weight:700;letter-spacing:1.5px;color:var(--text)}
 .nav-links{display:flex;gap:20px;align-items:center;flex:1;justify-content:center}
 .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:500;transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--blue-600)}
 .nav-cta{padding:8px 22px;border-radius:var(--radius-sm);background:var(--blue-600);color:#fff!important;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
 .nav-cta:hover{background:var(--blue-700);transform:translateY(-1px)}
-.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.nav-right img{height:36px;object-fit:contain}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;text-decoration:none}
+.nav-right img{height:40px;object-fit:contain}
 
 section{max-width:1100px;margin:0 auto;padding:0 32px}
 .section-label{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue-600);margin-bottom:10px}
@@ -206,9 +205,7 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
 
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-left">
-      <img src="img/portament.jpg" alt="PORTAMENT">
-    </a>
+    <a href="#" class="nav-left">PORTAMENT</a>
     <div class="nav-links">
       <a href="#">Contract Hub</a>
       <a href="#problem">課題</a>
