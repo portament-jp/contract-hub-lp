@@ -152,6 +152,31 @@ section{max-width:1100px;margin:0 auto;padding:0 32px}
 .sync-title{font-size:13px;font-weight:600;color:var(--green)}
 .sync-desc{font-size:11px;color:var(--text-dim);margin-top:2px}
 
+.alert-section{margin-top:20px}
+.alert-section-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.alert-section-title .alert-icon{font-size:16px}
+.alert-timeline{display:flex;gap:10px;flex-wrap:wrap}
+.alert-card{flex:1;min-width:180px;padding:14px 16px;border-radius:10px;border:1px solid;position:relative;overflow:hidden;opacity:0;transform:translateY(12px);transition:all .5s cubic-bezier(.4,0,.2,1)}
+.alert-card.visible{opacity:1;transform:translateY(0)}
+.alert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.alert-card.info{border-color:var(--blue-200);background:var(--blue-50)}
+.alert-card.info::before{background:var(--blue-600)}
+.alert-card.warn{border-color:var(--coral-border);background:var(--coral-bg)}
+.alert-card.warn::before{background:var(--coral)}
+.alert-card.urgent{border-color:#fca5a5;background:#fef2f2}
+.alert-card.urgent::before{background:#ef4444}
+.alert-timing{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.alert-card.info .alert-timing{color:var(--blue-600)}
+.alert-card.warn .alert-timing{color:var(--coral)}
+.alert-card.urgent .alert-timing{color:#ef4444}
+.alert-client{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+.alert-detail{font-size:11px;color:var(--text-secondary);line-height:1.5}
+.alert-action{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:4px 10px;border-radius:var(--radius-pill);font-size:10px;font-weight:600;border:1px solid;cursor:default}
+.alert-card.info .alert-action{color:var(--blue-600);border-color:var(--blue-200);background:var(--white)}
+.alert-card.warn .alert-action{color:var(--coral);border-color:var(--coral-border);background:var(--white)}
+.alert-card.urgent .alert-action{color:#ef4444;border-color:#fca5a5;background:var(--white)}
+.alert-notify-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--radius-pill);font-size:10px;font-weight:600;background:var(--blue-50);color:var(--blue-600);border:1px solid var(--blue-200)}
+
 .arch-section{padding-top:100px;padding-bottom:100px;position:relative}
 .arch-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg-section);z-index:-1}
 .arch-diagram{margin-top:36px;padding:40px 32px;border-radius:16px;background:var(--white);border:1px solid var(--border);text-align:center;box-shadow:var(--shadow-md)}
@@ -325,8 +350,12 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
       </div>
       <div id="phase-2" style="display:none">
         <div style="margin-bottom:16px"><div style="font-size:15px;font-weight:700">Phase 3 — 契約台帳（自動更新）</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">OpsGuide → Excel / Google Sheets へリアルタイム転記</div></div>
-        <div class="ledger-wrap"><table class="ledger-table"><thead><tr><th>契約No.</th><th>クライアント</th><th>種別</th><th>ステータス</th><th>日付</th><th>署名ツール</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
+        <div class="ledger-wrap"><table class="ledger-table"><thead><tr><th>契約No.</th><th>クライアント</th><th>種別</th><th>ステータス</th><th>締結日</th><th>更新期限</th><th>署名ツール</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
         <div class="sync-banner" id="sync-banner" style="opacity:0;transition:opacity .6s"><span class="sync-dot"></span><div><div class="sync-title">台帳自動同期 完了</div><div class="sync-desc">Excel台帳（契約管理_2026.xlsx）・Google Sheets ともにリアルタイム反映済み</div></div></div>
+        <div class="alert-section" id="alert-section" style="opacity:0;transition:opacity .6s">
+          <div class="alert-section-title"><span class="alert-icon">🔔</span>契約更新アラート — 自動通知スケジュール</div>
+          <div class="alert-timeline" id="alert-timeline"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -420,10 +449,15 @@ const STEPS=[
   {label:"完了通知",desc:"Hub経由で通知",icon:"🔔"},
 ];
 const LEDGER=[
-  {no:"C-2026-001",cl:"ABC商事",type:"新規契約",st:"署名待ち",stc:"var(--coral)",date:"2026/03/16",sig:"CloudSign"},
-  {no:"C-2026-002",cl:"DEFサービス",type:"申込書",st:"承認中",stc:"var(--purple)",date:"2026/03/16",sig:"—"},
-  {no:"C-2026-003",cl:"GHI物流",type:"契約更新",st:"完了",stc:"var(--green)",date:"2026/03/15",sig:"GMOサイン"},
-  {no:"C-2025-048",cl:"JKL建設",type:"NDA",st:"完了",stc:"var(--green)",date:"2026/03/12",sig:"CloudSign"},
+  {no:"C-2026-001",cl:"ABC商事",type:"新規契約",st:"署名待ち",stc:"var(--coral)",date:"2026/03/16",sig:"CloudSign",renew:"2027/03/16"},
+  {no:"C-2026-002",cl:"DEFサービス",type:"申込書",st:"承認中",stc:"var(--purple)",date:"2026/03/16",sig:"—",renew:"2027/03/16"},
+  {no:"C-2026-003",cl:"GHI物流",type:"契約更新",st:"完了",stc:"var(--green)",date:"2026/03/15",sig:"GMOサイン",renew:"2027/03/15"},
+  {no:"C-2025-048",cl:"JKL建設",type:"NDA",st:"完了",stc:"var(--green)",date:"2026/03/12",sig:"CloudSign",renew:"2027/03/12"},
+];
+const ALERTS=[
+  {timing:"6ヵ月前",level:"info",client:"JKL建設",contract:"NDA（C-2025-048）",renew:"2027/03/12",action:"更新意思確認を送信",detail:"更新期限 2027/03/12 — 早期確認で余裕をもった対応が可能",tool:"Chatwork"},
+  {timing:"3ヵ月前",level:"warn",client:"MNO商事",contract:"業務委託（C-2025-032）",renew:"2026/06/30",action:"更新書類を自動作成",detail:"更新期限 2026/06/30 — テンプレート選定・承認フロー起動",tool:"Slack"},
+  {timing:"1ヵ月前",level:"urgent",client:"PQR電機",contract:"保守契約（C-2025-019）",renew:"2026/04/15",action:"緊急リマインド送信",detail:"更新期限 2026/04/15 — 未対応のため担当者へ緊急通知",tool:"Teams"},
 ];
 
 let currentPhase=0;
@@ -435,7 +469,14 @@ function buildStepList(){
   document.getElementById('step-list').innerHTML=STEPS.map((s,i)=>`<div class="step-item not-started" id="step-${i}"><div class="step-icon">${s.icon}</div><div style="flex:1"><div class="step-label" style="color:var(--text-dim)">${s.label}</div><div class="step-desc">${s.desc}</div></div></div>`).join('');
 }
 function buildLedger(){
-  document.getElementById('ledger-body').innerHTML=LEDGER.map(r=>`<tr><td class="ledger-no">${r.no}</td><td class="ledger-client">${r.cl}</td><td style="color:var(--text-secondary)">${r.type}</td><td><span class="status-badge"><span class="dot" style="background:${r.stc};box-shadow:0 0 4px ${r.stc}60"></span><span style="color:${r.stc}">${r.st}</span></span></td><td class="ledger-date">${r.date}</td><td style="color:var(--text-secondary)">${r.sig}</td></tr>`).join('');
+  document.getElementById('ledger-body').innerHTML=LEDGER.map(r=>`<tr><td class="ledger-no">${r.no}</td><td class="ledger-client">${r.cl}</td><td style="color:var(--text-secondary)">${r.type}</td><td><span class="status-badge"><span class="dot" style="background:${r.stc};box-shadow:0 0 4px ${r.stc}60"></span><span style="color:${r.stc}">${r.st}</span></span></td><td class="ledger-date">${r.date}</td><td class="ledger-date">${r.renew}</td><td style="color:var(--text-secondary)">${r.sig}</td></tr>`).join('');
+}
+function buildAlerts(){
+  document.getElementById('alert-timeline').innerHTML=ALERTS.map((a,i)=>`<div class="alert-card ${a.level}" id="alert-${i}"><div class="alert-timing">${a.timing}</div><div class="alert-client">${a.client}</div><div class="alert-detail">${a.detail}</div><div style="display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap"><span class="alert-action">⚡ ${a.action}</span><span class="alert-notify-badge">📨 ${a.tool}で自動通知</span></div></div>`).join('');
+}
+function showAlerts(){
+  document.getElementById('alert-section').style.opacity='1';
+  ALERTS.forEach((_,i)=>{setTimeout(()=>{const el=document.getElementById(`alert-${i}`);if(el)el.classList.add('visible')},(i+1)*400)});
 }
 function switchPhase(n){
   if(n>currentPhase)return;
@@ -465,9 +506,9 @@ function runStep(){
     else{el.classList.add('pending');lb.style.color='var(--text-dim)'}});
   flowStep++;setTimeout(runStep,1100);
 }
-const phaseObs2=new MutationObserver(()=>{if(document.getElementById('phase-2').style.display!=='none')setTimeout(()=>{document.getElementById('sync-banner').style.opacity='1'},600)});
+const phaseObs2=new MutationObserver(()=>{if(document.getElementById('phase-2').style.display!=='none'){setTimeout(()=>{document.getElementById('sync-banner').style.opacity='1'},600);setTimeout(()=>{showAlerts()},1400)}});
 phaseObs2.observe(document.getElementById('phase-2'),{attributes:true,attributeFilter:['style']});
-buildMsgList();buildStepList();buildLedger();
+buildMsgList();buildStepList();buildLedger();buildAlerts();
 </script>
 </body>
 </html>
