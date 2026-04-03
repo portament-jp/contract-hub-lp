@@ -90,20 +90,28 @@ section{max-width:1100px;margin:0 auto;padding:0 32px}
 .phase-tab.active{border-color:var(--primary-light);background:var(--primary-50);color:var(--primary)}
 .phase-tab.done{color:var(--primary);border-color:var(--primary-200)}
 .phase-tab:disabled{cursor:default}
-.ba-toggle{display:flex;gap:0;margin-bottom:20px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;width:fit-content}
-.ba-btn{padding:8px 20px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--white);color:var(--text-dim);font-family:inherit;transition:all .2s;border-right:1px solid var(--border)}
-.ba-btn:last-child{border-right:none}
-.ba-btn.active{background:var(--primary);color:#fff}
-.ba-btn:not(.active):hover{background:var(--primary-50);color:var(--primary)}
-.demo-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--white);opacity:0;transform:translateX(-8px);transition:all .5s cubic-bezier(.4,0,.2,1)}
-.demo-item.visible{opacity:1;transform:translateX(0)}
-.demo-item.highlight{border-color:var(--accent-border);background:var(--accent-bg)}
-.demo-item-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid var(--border);background:var(--white)}
-.demo-item-content{flex:1;min-width:0}
-.demo-item-title{font-size:13px;font-weight:600;color:var(--text)}
-.demo-item-desc{font-size:12px;color:var(--text-secondary);line-height:1.5;margin-top:2px}
-.demo-item-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:600;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-border)}
-.demo-item-status{font-size:11px;color:var(--text-dim);white-space:nowrap;flex-shrink:0}
+
+.msg-list{display:flex;flex-direction:column;gap:6px}
+.msg-item{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--white);opacity:0;transform:translateX(-8px);transition:all .5s cubic-bezier(.4,0,.2,1)}
+.msg-item.visible{opacity:1;transform:translateX(0)}
+.msg-item.detected{border-color:var(--accent-border);background:var(--accent-bg)}
+.msg-tool-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;border:1px solid}
+.msg-from{font-size:13px;font-weight:600;color:var(--text)}
+.msg-time{font-size:11px;color:var(--text-dim)}
+.msg-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:600;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-border)}
+.msg-body{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.msg-normal{font-size:11px;color:var(--text-dim);white-space:nowrap;flex-shrink:0}
+.msg-meta{display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap}
+.msg-content{flex:1;min-width:0}
+
+.scan-btn{padding:9px 24px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;transition:all .2s;color:#fff}
+.scan-btn.blue{background:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.scan-btn.orange{background:var(--accent);box-shadow:0 2px 12px rgba(249,115,22,0.25)}
+.scan-btn:disabled{opacity:.5;cursor:default}
+.scan-btn:not(:disabled):hover{transform:translateY(-1px)}
+.detect-result{text-align:center;margin-top:18px}
+.detect-count{font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px}
+
 .workflow-progress{height:3px;background:var(--border-light);border-radius:2px;overflow:hidden;margin-bottom:16px}
 .workflow-progress-bar{height:100%;background:var(--primary);border-radius:2px;transition:width .8s cubic-bezier(.4,0,.2,1);width:0%}
 .step-list{display:flex;flex-direction:column;gap:4px}
@@ -117,20 +125,23 @@ section{max-width:1100px;margin:0 auto;padding:0 32px}
 .step-desc{font-size:11px;color:var(--text-dim)}
 .step-done-text{font-size:11px;color:var(--primary);font-weight:600;flex-shrink:0}
 .step-pulse{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:pulse 1.2s ease-in-out infinite;flex-shrink:0}
-.scan-btn{padding:9px 24px;border-radius:var(--radius-sm);border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;transition:all .2s;color:#fff}
-.scan-btn.blue{background:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.scan-btn.accent{background:var(--accent);box-shadow:0 2px 12px rgba(249,115,22,0.25)}
-.scan-btn:disabled{opacity:.5;cursor:default}
-.scan-btn:not(:disabled):hover{transform:translateY(-1px)}
-.arch-section{padding-top:100px;padding-bottom:100px;position:relative}
-.arch-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg-section);z-index:-1}
-.arch-diagram{margin-top:36px;padding:40px 32px;border-radius:16px;background:var(--white);border:1px solid var(--border);text-align:center;box-shadow:var(--shadow-md)}
-.arch-layer{margin-bottom:28px}
-.arch-layer-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
-.arch-box{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:var(--radius);font-size:14px;font-weight:700;margin:4px;background:var(--primary-50);border:1px solid var(--primary-200);color:var(--primary-dark)}
-.arch-arrows{color:var(--primary-200);font-size:14px;margin:6px 0;letter-spacing:4px;font-weight:500}
-.arch-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.arch-chip{padding:10px 18px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;text-align:center;border:1px solid var(--primary-200);color:var(--primary-dark);background:var(--white)}
+
+.ledger-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+.ledger-table{width:100%;border-collapse:collapse;font-size:12px}
+.ledger-table th{padding:10px 14px;text-align:left;font-weight:600;color:var(--text-dim);border-bottom:1px solid var(--border);background:var(--bg-section);white-space:nowrap;font-size:11px;letter-spacing:.3px;text-transform:uppercase}
+.ledger-table td{padding:10px 14px;border-bottom:1px solid var(--border-light)}
+.ledger-table tr:last-child td{border-bottom:none}
+.ledger-table tr:hover td{background:var(--primary-50)}
+.ledger-no{color:var(--primary);font-family:monospace;font-weight:600}
+.ledger-client{color:var(--text);font-weight:600}
+.ledger-date{color:var(--text-dim);font-family:monospace}
+.status-badge{display:inline-flex;align-items:center;gap:5px;font-weight:600;font-size:12px}
+.status-badge .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.sync-banner{display:flex;gap:12px;align-items:center;margin-top:16px;padding:12px 18px;border-radius:10px;background:var(--green-bg);border:1px solid var(--green-border)}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(22,163,74,0.4);flex-shrink:0}
+.sync-title{font-size:13px;font-weight:600;color:var(--green)}
+.sync-desc{font-size:11px;color:var(--text-dim);margin-top:2px}
+
 .compare-section{padding-top:100px;padding-bottom:100px}
 .compare-table-wrap{margin-top:36px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md)}
 .compare-table{width:100%;border-collapse:collapse}
@@ -162,7 +173,7 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
   .nav-links{display:none}.nav-right{display:none}section{padding-left:20px;padding-right:20px}
   .hero-actions{flex-direction:column;align-items:center}.hero-flow{gap:4px}
   .flow-node{padding:8px 12px;font-size:11px}.demo-body{padding:20px 16px}
-  .compare-table th,.compare-table td{padding:10px 12px;font-size:12px}.arch-diagram{padding:28px 16px}.ba-toggle{flex-wrap:wrap}
+  .compare-table th,.compare-table td{padding:10px 12px;font-size:12px}
 }
 </style>
 </head>
@@ -176,7 +187,6 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
       <a href="#problem">課題</a>
       <a href="#solution">機能</a>
       <a href="#demo">デモ</a>
-
       <a href="#compare">比較</a>
       <a href="#cta" class="nav-cta">お問い合わせ</a>
     </div>
@@ -232,16 +242,35 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
       </div>
     </div>
     <div class="demo-body">
-      <div class="ba-toggle">
-        <button class="ba-btn active" onclick="switchBA('before')">Before（現状）</button>
-        <button class="ba-btn" onclick="switchBA('after')">After（導入後）</button>
+      <div class="phase-tabs">
+        <button class="phase-tab active" id="tab-0" onclick="switchPhase(0)">受信分析</button>
+        <button class="phase-tab" id="tab-1" onclick="switchPhase(1)" disabled>ワークフロー</button>
+        <button class="phase-tab" id="tab-2" onclick="switchPhase(2)" disabled>台帳連携</button>
       </div>
-      <div class="phase-tabs" id="phase-tabs"></div>
-      <div id="phase-content"></div>
+      <div id="phase-0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div><div style="font-size:15px;font-weight:700">Phase 1 — 受信メッセージ分析</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">全ツールのメッセージをAI分析</div></div>
+          <button class="scan-btn blue" id="scan-btn" onclick="startScan()">/inbox スキャン開始</button>
+        </div>
+        <div class="msg-list" id="msg-list"></div>
+        <div class="detect-result" id="detect-result" style="display:none"><div class="detect-count" id="detect-count"></div><button class="scan-btn orange" onclick="goPhase1()">契約フローを起動 →</button></div>
+      </div>
+      <div id="phase-1" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div><div style="font-size:15px;font-weight:700">Phase 2 — OpsGuide ワークフロー</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">契約ライフサイクルを自動実行</div></div>
+          <button class="scan-btn blue" id="flow-btn" onclick="startFlow()">フロー実行</button>
+        </div>
+        <div class="workflow-progress"><div class="workflow-progress-bar" id="wf-bar"></div></div>
+        <div class="step-list" id="step-list"></div>
+      </div>
+      <div id="phase-2" style="display:none">
+        <div style="margin-bottom:16px"><div style="font-size:15px;font-weight:700">Phase 3 — 契約台帳（自動更新）</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">OpsGuide → Excel / Google Sheets へリアルタイム転記</div></div>
+        <div class="ledger-wrap"><table class="ledger-table"><thead><tr><th>契約No.</th><th>クライアント</th><th>種別</th><th>ステータス</th><th>日付</th><th>署名ツール</th></tr></thead><tbody id="ledger-body"></tbody></table></div>
+        <div class="sync-banner" id="sync-banner" style="opacity:0;transition:opacity .6s"><span class="sync-dot"></span><div><div class="sync-title">台帳自動同期 完了</div><div class="sync-desc">Excel台帳（契約管理_2026.xlsx）・Google Sheets ともにリアルタイム反映済み</div></div></div>
+      </div>
     </div>
   </div>
 </section>
-
 
 <section class="compare-section fade-in" id="compare">
   <span class="section-label">Comparison</span>
@@ -301,69 +330,6 @@ const CONFIG = {
     { icon: "🔔", title: "更新期限アラート自動通知", cmd: "Slack / Teams / メール通知", desc: "更新期限の30日前・14日前・7日前に自動アラート。担当者に直接通知。見落としゼロ。" },
   ],
 
-  demoPhases: [
-    {
-      tabLabel: "契約書登録",
-      before: {
-        title: "Phase 1 — 現在の契約書管理",
-        subtitle: "保管も台帳更新も手作業の実態",
-        items: [
-          { icon: "📧", title: "契約書がメール添付のまま放置", desc: "受領した契約書がメールの中に埋もれている。フォルダ分けする時間がない...", type: "manual", status: "放置" },
-          { icon: "📂", title: "保管場所がバラバラ", desc: "Googleドライブ、ローカルPC、紙の棚... 人によって保管場所が違う", type: "manual", status: "混乱" },
-          { icon: "⌨️", title: "管理台帳に手入力（または放置）", desc: "契約先・金額・期限をExcelに手入力。面倒で後回しにした結果、半年分が未登録", type: "manual", status: "月2時間" },
-          { icon: "❌", title: "更新期限を見落とし", desc: "自動更新条項に気づかず不要な契約が延長。年間数十万円の無駄が発生", type: "problem", status: "年2〜3回" },
-        ],
-      },
-      after: {
-        title: "Phase 1 — AI自動登録",
-        subtitle: "アップロードするだけで全自動",
-        items: [
-          { icon: "📤", title: "契約書をドラッグ&ドロップ", desc: "PDF・画像・スキャンどれでもOK。メール転送でも自動取込。", type: "auto", badge: "自動", status: "5秒" },
-          { icon: "🤖", title: "AIが契約情報を瞬時に抽出", desc: "契約先・契約日・更新期限・金額・契約種別を自動読取。手入力ゼロ。", type: "auto", badge: "AI処理", status: "10秒" },
-          { icon: "📊", title: "管理台帳に自動反映", desc: "抽出データを台帳に自動登録。ステータス・期限・金額が常に最新。", type: "auto", badge: "自動更新", status: "即時" },
-          { icon: "✅", title: "所定フォルダに自動保管", desc: "契約種別・取引先ごとに自動分類して保管。「あの契約書どこ？」が消える。", type: "success", status: "完了" },
-        ],
-      },
-    },
-    {
-      tabLabel: "期限管理",
-      workflow: {
-        title: "Phase 2 — 更新期限アラートフロー",
-        subtitle: "期限切れを自動で防止",
-        steps: [
-          { label: "更新期限を自動取得", desc: "契約書から更新日・終了日を自動抽出", icon: "📅" },
-          { label: "アラートスケジュール設定", desc: "30日前・14日前・7日前の3段階", icon: "⏰" },
-          { label: "担当者に自動通知", desc: "Slack/Teams/メールで直接アラート", icon: "🔔" },
-          { label: "対応状況を自動追跡", desc: "未対応のアラートは再通知", icon: "👁" },
-          { label: "対応完了記録", desc: "更新/解約の判断結果を台帳に反映", icon: "✅" },
-        ],
-      },
-    },
-    {
-      tabLabel: "ダッシュボード",
-      result: {
-        title: "Phase 3 — 契約管理ダッシュボード",
-        subtitle: "全契約の状況をリアルタイムで可視化",
-        summaryItems: [
-          { label: "管理契約数", value: "156件", color: "var(--green)" },
-          { label: "今月更新期限", value: "3件", color: "var(--accent)" },
-          { label: "月間削減時間", value: "15h", color: "var(--primary)" },
-        ],
-      },
-    },
-  ],
-
-  architecture: {
-    layers: [
-      { label: "入力ソース", items: ["📧 メール転送", "📤 ファイルアップロード", "📱 スマホ撮影"] },
-      { label: "接続", arrow: "↓ 自動取込 ↓" },
-      { label: "AI処理エンジン", box: "🤖 契約書オートメーション（独自自動化エンジン）" },
-      { label: "接続", arrow: "↓ 自動登録・通知 ↓" },
-      { label: "出力先", items: ["📊 管理台帳（スプシ/Notion）", "📁 クラウドストレージ自動保管", "🔔 Slack/Teams期限アラート"] },
-    ],
-    footer: "PORTAMENT独自開発 — 契約書の読取・分類・期限管理を全自動化",
-  },
-
   comparison: [
     { item: "契約書の保管", before: "メール・ドライブ・紙に散在", after: "自動分類して一元保管" },
     { item: "管理台帳の更新", before: "手入力（半年分未登録も）", after: "AI読取→自動登録（即時）" },
@@ -375,7 +341,33 @@ const CONFIG = {
 };
 
 // =============================================
-// RENDERER（テンプレート共通 - 変更不要）
+// DEMO DATA (Original 3-Phase Interactive Demo)
+// =============================================
+const MSGS=[
+  {tool:"S",color:"#E01E5A",from:"田中 太郎（ABC商事）",time:"14:23",body:"先日の件、前向きに検討しています。契約書を送っていただけますか？",isCon:true,conf:94},
+  {tool:"C",color:"#EE3424",from:"佐藤 花子（XYZ工業）",time:"14:18",body:"来週の打ち合わせの件、火曜日14時でお願いします。",isCon:false,conf:8},
+  {tool:"G",color:"#4285F4",from:"鈴木 一郎（DEFサービス）",time:"14:10",body:"見積もりを確認しました。このまま進めたいので申込書をお願いします。",isCon:true,conf:91},
+  {tool:"T",color:"#6264A7",from:"山本 美咲（社内）",time:"13:55",body:"経費精算の締切が明日です。提出お願いします。",isCon:false,conf:3},
+  {tool:"L",color:"#00C73C",from:"中村 健太（GHI物流）",time:"13:40",body:"更新の件ですが、条件変更なしで継続でお願いしたいです。契約更新書を送ってください。",isCon:true,conf:97},
+];
+const STEPS=[
+  {label:"契約意思検出",desc:"AIがメッセージを分析",icon:"🔍"},
+  {label:"テンプレート選定",desc:"案件種別で自動判定",icon:"📋"},
+  {label:"社内承認",desc:"承認ルート自動起動",icon:"✅"},
+  {label:"署名依頼送信",desc:"電子署名APIで送信",icon:"✍️"},
+  {label:"署名完了",desc:"Webhook受信",icon:"📄"},
+  {label:"台帳転記",desc:"Excel/Sheets自動更新",icon:"📊"},
+  {label:"完了通知",desc:"Hub経由で通知",icon:"🔔"},
+];
+const LEDGER=[
+  {no:"C-2026-001",cl:"ABC商事",type:"新規契約",st:"署名待ち",stc:"var(--accent)",date:"2026/03/16",sig:"CloudSign"},
+  {no:"C-2026-002",cl:"DEFサービス",type:"申込書",st:"承認中",stc:"var(--purple)",date:"2026/03/16",sig:"—"},
+  {no:"C-2026-003",cl:"GHI物流",type:"契約更新",st:"完了",stc:"var(--green)",date:"2026/03/15",sig:"GMOサイン"},
+  {no:"C-2025-048",cl:"JKL建設",type:"NDA",st:"完了",stc:"var(--green)",date:"2026/03/12",sig:"CloudSign"},
+];
+
+// =============================================
+// RENDERER
 // =============================================
 window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40)});
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
@@ -394,40 +386,59 @@ function buildProblemCards(){
 function buildSolutionCards(){
   document.getElementById('solution-grid').innerHTML=CONFIG.solutions.map(s=>`<div class="solution-card"><div class="solution-icon">${s.icon}</div><h3>${s.title}</h3><div class="solution-cmd">${s.cmd}</div><p>${s.desc}</p></div>`).join('');
 }
+function buildCompareTable(){
+  document.getElementById('compare-body').innerHTML=CONFIG.comparison.map(c=>`<tr><td>${c.item}</td><td>${c.before}</td><td>${c.after}</td></tr>`).join('');
+}
 
-let currentPhase=0,currentBA='before';
-function switchBA(mode){
-  currentBA=mode;
-  document.querySelectorAll('.ba-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.ba-btn[onclick="switchBA('${mode}')"]`).classList.add('active');
-  renderPhase(currentPhase);
-}
-function buildPhaseTabs(){
-  document.getElementById('phase-tabs').innerHTML=CONFIG.demoPhases.map((p,i)=>`<button class="phase-tab${i===0?' active':''}" id="dtab-${i}" onclick="goToPhase(${i})"${i>0?' disabled':''}>${p.tabLabel}</button>`).join('');
-}
-function goToPhase(n){
-  if(n>currentPhase+1)return;
-  currentPhase=Math.max(currentPhase,n);
-  for(let i=0;i<=currentPhase;i++)document.getElementById(`dtab-${i}`).disabled=false;
-  CONFIG.demoPhases.forEach((_,i)=>{const t=document.getElementById(`dtab-${i}`);t.classList.remove('active','done');if(i===n)t.classList.add('active');else if(i<n)t.classList.add('done')});
-  renderPhase(n);
-}
-function renderPhase(n){
-  const phase=CONFIG.demoPhases[n],container=document.getElementById('phase-content');
-  if(phase.workflow){const wf=phase.workflow;container.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div><div style="font-size:15px;font-weight:700">${wf.title}</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">${wf.subtitle}</div></div><button class="scan-btn blue" id="flow-btn" onclick="runWorkflow()">フロー実行</button></div><div class="workflow-progress"><div class="workflow-progress-bar" id="wf-bar"></div></div><div class="step-list" id="step-list">${wf.steps.map((s,i)=>`<div class="step-item not-started" id="wf-step-${i}"><div class="step-icon">${s.icon}</div><div style="flex:1"><div class="step-label" style="color:var(--text-dim)">${s.label}</div><div class="step-desc">${s.desc}</div></div></div>`).join('')}</div>`;return}
-  if(phase.result){const r=phase.result;container.innerHTML=`<div style="margin-bottom:16px"><div style="font-size:15px;font-weight:700">${r.title}</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">${r.subtitle}</div></div><div style="display:flex;gap:16px;flex-wrap:wrap">${r.summaryItems.map(s=>`<div style="flex:1;min-width:140px;padding:24px 20px;border-radius:12px;background:var(--bg-section);border:1px solid var(--border);text-align:center"><div style="font-size:28px;font-weight:800;color:${s.color}">${s.value}</div><div style="font-size:12px;color:var(--text-dim);margin-top:4px">${s.label}</div></div>`).join('')}</div><div style="margin-top:20px;padding:14px 20px;border-radius:10px;background:var(--green-bg);border:1px solid var(--green-border);display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(22,163,74,0.4);flex-shrink:0"></span><div><div style="font-size:13px;font-weight:600;color:var(--green)">処理完了</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px">全ステップが正常に完了しました</div></div></div>`;return}
-  const data=currentBA==='before'?phase.before:phase.after;
-  if(!data){container.innerHTML='<p style="color:var(--text-dim);font-size:13px">データ未設定</p>';return}
-  container.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div><div style="font-size:15px;font-weight:700">${data.title}</div><div style="font-size:12px;color:var(--text-dim);margin-top:2px">${data.subtitle}</div></div>${currentBA==='before'?'<button class="scan-btn blue" onclick="switchBA(\'after\')">After を見る \u2192</button>':'<button class="scan-btn accent" onclick="nextPhaseFromDemo()">次のフェーズ \u2192</button>'}</div><div style="display:flex;flex-direction:column;gap:6px">${data.items.map((item,i)=>{const hl=item.type==='problem'||item.type==='success';return`<div class="demo-item${hl?' highlight':''}" style="opacity:0;transform:translateX(-8px)" id="ditem-${i}"><div class="demo-item-icon">${item.icon}</div><div class="demo-item-content"><div class="demo-item-title">${item.title}${item.badge?` <span class="demo-item-badge">${item.badge}</span>`:''}</div><div class="demo-item-desc">${item.desc}</div></div>${item.status?`<span class="demo-item-status">${item.status}</span>`:''}</div>`}).join('')}</div>`;
-  data.items.forEach((_,i)=>{setTimeout(()=>{const el=document.getElementById(`ditem-${i}`);if(el){el.style.opacity='1';el.style.transform='translateX(0)'}},((i+1)*300))});
-}
-function nextPhaseFromDemo(){goToPhase(Math.min(currentPhase+1,CONFIG.demoPhases.length-1))}
-let wfStep=-1;
-function runWorkflow(){const btn=document.getElementById('flow-btn');if(btn)btn.style.display='none';const phase=CONFIG.demoPhases.find(p=>p.workflow);if(!phase)return;const steps=phase.workflow.steps;wfStep=0;function tick(){if(wfStep>=steps.length){setTimeout(()=>nextPhaseFromDemo(),800);return}document.getElementById('wf-bar').style.width=((wfStep+1)/steps.length*100)+'%';steps.forEach((_,i)=>{const el=document.getElementById(`wf-step-${i}`),lb=el.querySelector('.step-label'),ic=el.querySelector('.step-icon');el.querySelectorAll('.step-done-text,.step-pulse').forEach(x=>x.remove());el.className='step-item';if(i<wfStep){el.classList.add('done');lb.style.color='var(--text)';ic.innerHTML='<span style="color:var(--primary);font-size:14px">\u2713</span>';const d=document.createElement('span');d.className='step-done-text';d.textContent='完了';el.appendChild(d)}else if(i===wfStep){el.classList.add('current');lb.style.color='var(--text)';const p=document.createElement('span');p.className='step-pulse';el.appendChild(p)}else{el.classList.add('pending');lb.style.color='var(--text-dim)'}});wfStep++;setTimeout(tick,1100)}tick()}
-function buildArchDiagram(){const el=document.getElementById('arch-diagram');let html='';CONFIG.architecture.layers.forEach(layer=>{if(layer.arrow)html+=`<div class="arch-arrows">${layer.arrow}</div>`;else if(layer.box)html+=`<div class="arch-layer"><div class="arch-layer-label">${layer.label}</div><span class="arch-box">${layer.box}</span></div>`;else if(layer.items)html+=`<div class="arch-layer"><div class="arch-layer-label">${layer.label}</div><div class="arch-row">${layer.items.map(item=>`<span class="arch-chip">${item}</span>`).join('')}</div></div>`});if(CONFIG.architecture.footer)html+=`<div style="margin-top:24px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--primary-50);border:1px solid var(--primary-200);display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--primary-dark);font-weight:500"><span style="color:var(--primary)">\u25CF</span> ${CONFIG.architecture.footer}</div>`;el.innerHTML=html}
-function buildCompareTable(){document.getElementById('compare-body').innerHTML=CONFIG.comparison.map(c=>`<tr><td>${c.item}</td><td>${c.before}</td><td>${c.after}</td></tr>`).join('')}
+// =============================================
+// DEMO FUNCTIONS (Original 3-Phase Interactive)
+// =============================================
+let currentPhase=0;
 
-buildHeroFlow();buildProblemCards();buildSolutionCards();buildPhaseTabs();renderPhase(0);buildCompareTable();
+function buildMsgList(){
+  document.getElementById('msg-list').innerHTML=MSGS.map((m,i)=>`<div class="msg-item" id="msg-${i}"><div class="msg-tool-icon" style="background:${m.color}10;border-color:${m.color}40;color:${m.color}">${m.tool}</div><div class="msg-content"><div class="msg-meta"><span class="msg-from">${m.from}</span><span class="msg-time">${m.time}</span><span class="msg-badge" id="badge-${i}" style="display:none">契約トリガー ${m.conf}%</span></div><div class="msg-body">${m.body}</div></div><span class="msg-normal" id="normal-${i}" style="display:none">通常メッセージ</span></div>`).join('');
+}
+function buildStepList(){
+  document.getElementById('step-list').innerHTML=STEPS.map((s,i)=>`<div class="step-item not-started" id="step-${i}"><div class="step-icon">${s.icon}</div><div style="flex:1"><div class="step-label" style="color:var(--text-dim)">${s.label}</div><div class="step-desc">${s.desc}</div></div></div>`).join('');
+}
+function buildLedger(){
+  document.getElementById('ledger-body').innerHTML=LEDGER.map(r=>`<tr><td class="ledger-no">${r.no}</td><td class="ledger-client">${r.cl}</td><td style="color:var(--text-secondary)">${r.type}</td><td><span class="status-badge"><span class="dot" style="background:${r.stc};box-shadow:0 0 4px ${r.stc}60"></span><span style="color:${r.stc}">${r.st}</span></span></td><td class="ledger-date">${r.date}</td><td style="color:var(--text-secondary)">${r.sig}</td></tr>`).join('');
+}
+function switchPhase(n){
+  if(n>currentPhase)return;
+  [0,1,2].forEach(i=>{
+    document.getElementById(`phase-${i}`).style.display=i===n?'block':'none';
+    const t=document.getElementById(`tab-${i}`);t.classList.remove('active','done');
+    if(i===n)t.classList.add('active');else if(i<currentPhase)t.classList.add('done');
+  });
+}
+function enablePhase(n){currentPhase=Math.max(currentPhase,n);for(let i=0;i<=n;i++)document.getElementById(`tab-${i}`).disabled=false;switchPhase(n)}
+function startScan(){
+  const btn=document.getElementById('scan-btn');btn.disabled=true;btn.textContent='分析中...';
+  document.getElementById('detect-result').style.display='none';
+  MSGS.forEach((m,i)=>{const el=document.getElementById(`msg-${i}`);el.classList.remove('visible','detected');document.getElementById(`badge-${i}`).style.display='none';document.getElementById(`normal-${i}`).style.display='none';
+    setTimeout(()=>{el.classList.add('visible');setTimeout(()=>{if(m.isCon){el.classList.add('detected');document.getElementById(`badge-${i}`).style.display='inline-flex'}else{document.getElementById(`normal-${i}`).style.display='block'}},400)},(i+1)*600)});
+  setTimeout(()=>{btn.textContent='再スキャン';btn.disabled=false;document.getElementById('detect-count').textContent=`${MSGS.filter(m=>m.isCon).length}件の契約関連メッセージを検出`;document.getElementById('detect-result').style.display='block'},MSGS.length*600+800);
+}
+function goPhase1(){enablePhase(1)}
+let flowStep=-1;
+function startFlow(){document.getElementById('flow-btn').style.display='none';flowStep=0;runStep()}
+function runStep(){
+  if(flowStep>=STEPS.length){setTimeout(()=>enablePhase(2),800);return}
+  document.getElementById('wf-bar').style.width=((flowStep+1)/STEPS.length*100)+'%';
+  STEPS.forEach((_,i)=>{const el=document.getElementById(`step-${i}`);el.className='step-item';const lb=el.querySelector('.step-label'),ic=el.querySelector('.step-icon');el.querySelectorAll('.step-done-text,.step-pulse').forEach(x=>x.remove());
+    if(i<flowStep){el.classList.add('done');lb.style.color='var(--text)';ic.innerHTML='<span style="color:var(--primary);font-size:14px">✓</span>';const d=document.createElement('span');d.className='step-done-text';d.textContent='完了';el.appendChild(d)}
+    else if(i===flowStep){el.classList.add('current');lb.style.color='var(--text)';const p=document.createElement('span');p.className='step-pulse';el.appendChild(p)}
+    else{el.classList.add('pending');lb.style.color='var(--text-dim)'}});
+  flowStep++;setTimeout(runStep,1100);
+}
+const phaseObs2=new MutationObserver(()=>{if(document.getElementById('phase-2').style.display!=='none')setTimeout(()=>{document.getElementById('sync-banner').style.opacity='1'},600)});
+phaseObs2.observe(document.getElementById('phase-2'),{attributes:true,attributeFilter:['style']});
+
+// =============================================
+// INIT
+// =============================================
+buildHeroFlow();buildProblemCards();buildSolutionCards();buildCompareTable();buildMsgList();buildStepList();buildLedger();
 </script>
 </body>
 </html>
