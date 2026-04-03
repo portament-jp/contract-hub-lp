@@ -176,7 +176,7 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
       <a href="#problem">課題</a>
       <a href="#solution">機能</a>
       <a href="#demo">デモ</a>
-      <a href="#architecture">仕組み</a>
+
       <a href="#compare">比較</a>
       <a href="#cta" class="nav-cta">お問い合わせ</a>
     </div>
@@ -242,12 +242,6 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
   </div>
 </section>
 
-<section class="arch-section fade-in" id="architecture">
-  <span class="section-label">Architecture</span>
-  <h2 class="section-title">システム構成</h2>
-  <p class="section-desc">メール × AI読取 × クラウドストレージ × OpsGuideで、契約書管理をエンドツーエンドで自動化。</p>
-  <div class="arch-diagram" id="arch-diagram"></div>
-</section>
 
 <section class="compare-section fade-in" id="compare">
   <span class="section-label">Comparison</span>
@@ -264,7 +258,7 @@ footer{padding:24px 32px;border-top:1px solid var(--border);text-align:center;fo
 <section class="cta-section fade-in" id="cta">
   <div class="cta-box">
     <h2>契約書管理を、<br>もっとスマートに。</h2>
-    <p>契約書の保管・台帳管理・期限アラートを<br>AI × OpsGuideで劇的に効率化します。</p>
+    <p>契約書の保管・台帳管理・期限アラートを<br>AI × 独自自動化ツールで劇的に効率化します。</p>
     <div class="cta-actions">
       <a href="#demo" class="btn-primary">デモを体験する</a>
       <a href="#" class="btn-secondary">お問い合わせ</a>
@@ -302,7 +296,7 @@ const CONFIG = {
 
   solutions: [
     { icon: "📤", title: "契約書をアップロードするだけ", cmd: "ドラッグ&ドロップ / メール転送", desc: "PDF・画像・スキャンデータをアップロード、またはメールを転送するだけ。紙の契約書もスマホで撮影してOK。" },
-    { icon: "🤖", title: "AI自動読取・情報抽出", cmd: "Claude Vision API", desc: "契約先・契約日・更新期限・金額・契約種別をAIが自動抽出。手入力ゼロ。読取精度99%以上。" },
+    { icon: "🤖", title: "AI自動読取・情報抽出", cmd: "独自AI読取エンジン", desc: "契約先・契約日・更新期限・金額・契約種別をAIが自動抽出。手入力ゼロ。読取精度99%以上。" },
     { icon: "📊", title: "管理台帳に自動反映", cmd: "スプレッドシート / Notion連携", desc: "抽出した情報を管理台帳に自動登録。新規・更新・解約もステータス自動管理。常に最新の状態。" },
     { icon: "🔔", title: "更新期限アラート自動通知", cmd: "Slack / Teams / メール通知", desc: "更新期限の30日前・14日前・7日前に自動アラート。担当者に直接通知。見落としゼロ。" },
   ],
@@ -363,11 +357,11 @@ const CONFIG = {
     layers: [
       { label: "入力ソース", items: ["📧 メール転送", "📤 ファイルアップロード", "📱 スマホ撮影"] },
       { label: "接続", arrow: "↓ 自動取込 ↓" },
-      { label: "AI処理エンジン", box: "🤖 契約書オートメーション（Claude Vision + OpsGuide）" },
+      { label: "AI処理エンジン", box: "🤖 契約書オートメーション（独自自動化エンジン）" },
       { label: "接続", arrow: "↓ 自動登録・通知 ↓" },
       { label: "出力先", items: ["📊 管理台帳（スプシ/Notion）", "📁 クラウドストレージ自動保管", "🔔 Slack/Teams期限アラート"] },
     ],
-    footer: "Claude AI — 契約書の読取・分類・期限管理を全自動化",
+    footer: "PORTAMENT独自開発 — 契約書の読取・分類・期限管理を全自動化",
   },
 
   comparison: [
@@ -433,7 +427,7 @@ function runWorkflow(){const btn=document.getElementById('flow-btn');if(btn)btn.
 function buildArchDiagram(){const el=document.getElementById('arch-diagram');let html='';CONFIG.architecture.layers.forEach(layer=>{if(layer.arrow)html+=`<div class="arch-arrows">${layer.arrow}</div>`;else if(layer.box)html+=`<div class="arch-layer"><div class="arch-layer-label">${layer.label}</div><span class="arch-box">${layer.box}</span></div>`;else if(layer.items)html+=`<div class="arch-layer"><div class="arch-layer-label">${layer.label}</div><div class="arch-row">${layer.items.map(item=>`<span class="arch-chip">${item}</span>`).join('')}</div></div>`});if(CONFIG.architecture.footer)html+=`<div style="margin-top:24px;padding:10px 20px;border-radius:var(--radius-sm);background:var(--primary-50);border:1px solid var(--primary-200);display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--primary-dark);font-weight:500"><span style="color:var(--primary)">\u25CF</span> ${CONFIG.architecture.footer}</div>`;el.innerHTML=html}
 function buildCompareTable(){document.getElementById('compare-body').innerHTML=CONFIG.comparison.map(c=>`<tr><td>${c.item}</td><td>${c.before}</td><td>${c.after}</td></tr>`).join('')}
 
-buildHeroFlow();buildProblemCards();buildSolutionCards();buildPhaseTabs();renderPhase(0);buildArchDiagram();buildCompareTable();
+buildHeroFlow();buildProblemCards();buildSolutionCards();buildPhaseTabs();renderPhase(0);buildCompareTable();
 </script>
 </body>
 </html>
